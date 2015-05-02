@@ -19,4 +19,7 @@
     <php>
         <ini name="error_reporting" value="2147483647"/> <!-- E_ALL -->
     </php>
+    <logging>
+        <log type="junit" target="shippable/testresults/junit.xml"/>
+    </logging>
 </phpunit>
