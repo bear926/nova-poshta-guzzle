@@ -17,7 +17,7 @@ return [
           'location' => 'json',
           'required' => TRUE,
           'sentAs' => 'apiKey'
-        ],
+        ]
       ]
     ],
     'AddressOperation' => [
@@ -39,6 +39,7 @@ return [
           'location' => 'json',
           'type'     => 'object',
           'sentAs' => 'methodProperties',
+          'default' => new stdClass(),
           'properties' => [
             'search_text' => [
               'type'   => 'string',
@@ -54,6 +55,12 @@ return [
             ]
           ]
         ],
+        'calledMethod' => [
+          'type'     => 'string',
+          'location' => 'json',
+          'static'   => TRUE,
+          'default' => 'getCities',
+        ]
       ],
       'responseModel' => 'CityListResponse',
       'summary' => 'Returns list of cities there are warehouses of the Nova Poshta.'
@@ -79,9 +86,34 @@ return [
             ]
           ]
         ],
+        'calledMethod' => [
+          'type'     => 'string',
+          'location' => 'json',
+          'static'   => TRUE,
+          'default' => 'getWarehouses',
+        ]
       ],
       'responseModel' => 'WarehousesListResponse',
       'summary' => 'Returns list of warehouses of the Nova Poshta.'
+    ],
+    'getAreas' => [
+      'extends' => 'AddressOperation',
+      'httpMethod' => 'POST',
+      'responseModel' => 'Address',
+      'parameters' => [
+        'methodProperties' => [
+          'location' => 'json',
+          'type'     => 'object',
+          'sentAs' => 'methodProperties',
+          'default' => new stdClass(),
+        ],
+        'calledMethod' => [
+          'type'     => 'string',
+          'location' => 'json',
+          'static'   => TRUE,
+          'default' => 'getAreas',
+        ]
+      ]
     ]
   ],
   'models' => [
@@ -183,7 +215,36 @@ return [
           ]
         ]
       ]
+    ],
+      'Address' => [
+        'type' => 'object',
+        'properties' => [
+          'success' => [
+            'type'  => 'boolean',
+            'location' => 'json'
+          ],
+
+          'data' => [
+            'type' => 'array',
+            'location' => 'json',
+            'items' => [
+              'type' => 'object',
+            ]
+          ],
+          'errors' => [
+            'type' => ['string', 'array'],
+            'location' => 'json'
+          ],
+          'warnings' => [
+            'type' => 'array',
+            'location' => 'json'
+          ],
+          'info' => [
+            'type' => 'array',
+            'location' => 'json'
+          ],
+        ]
+      ]
     ]
-  ]
 
 ];
