@@ -28,15 +28,22 @@ class NovaPoshtaClient extends GuzzleClient {
    * @param array $config
    *   GuzzleHttp\Command\Guzzle\GuzzleClient $config options.
    * @param array $http_config
-   *   GuzzleHttp\Client $co
-   * nfig options.
+   *   GuzzleHttp\Client $config options.
+   * @param array $description Custom options to apply to the description
+   *     - formatter: Can provide a custom SchemaFormatter class
    *
    * @return NovaPoshtaClient
    *   An wrapped GuzzleClient.
    */
-  public static function factory($config = [], $http_config = []) {
+  public static function factory($config = [], $http_config = [], $description = []) {
     $description_path = __DIR__ . '/Resources/novaposhta-json-v2.php';
-    $description = new Description(include $description_path);
+    include $description_path;
+    if (!empty($default_description)) {
+      $default_description['operations'] += isset($description['operations']) ? $description['operations'] :[];
+      $default_description['models'] += isset($description['models']) ? $description['models'] : [];
+    }
+
+    $description = new Description($default_description);
     $defaults = [];
     $config = array_merge($defaults, $config);
     $http_client = new HttpClient($http_config);

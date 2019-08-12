@@ -1,8 +1,16 @@
 {
-  "name": "drupalway/nova-poshta-guzzle",
+  "name": "bear926/nova-poshta-guzzle",
+  "version": "2.1",
+  "repositories": [
+    {
+      "type": "git",
+      "url": "https://github.com/bear926/nova-poshta-guzzle"
+    }
+  ],
   "type": "library",
   "description": "Service integration API for the commerce_shipping module.",
-  "homepage": "https://github.com/vladdancer/nova-poshta-guzzle",
+  "homepage": "https://github.com/bear926/nova-poshta-guzzle",
+
   "authors": [
     {
       "name": "Vladyslav Moiseienko",
@@ -16,7 +24,8 @@
     }
   ],
   "support": {
-    "issues": "https://github.com/vladdancer/nova-poshta-guzzle/issues"
+    "issues": "https://github.com/bear926/nova-poshta-guzzle/issues",
+    "source": "https://github.com/bear926/nova-poshta-guzzle.git"
   },
   "license": "MIT",
   "require": {

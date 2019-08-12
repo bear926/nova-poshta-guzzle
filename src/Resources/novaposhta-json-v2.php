@@ -7,7 +7,7 @@
  * @see GuzzleHttp\Command\Guzzle\Description
  */
 
-return [
+$default_description = [
   'description' => 'Nova Poshta API',
   'baseUrl' => 'https://api.novaposhta.ua/v2.0/json/',
   'operations' => [
